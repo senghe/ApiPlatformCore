@@ -75,7 +75,7 @@ final class YamlResourceExtractor extends AbstractResourceExtractor
                 $resourceYaml = [$resourceYaml];
             }
 
-            $resourcesCount = isset($this->resources[$resourceName]) ? count($this->resources[$resourceName]) : 0;
+            $resourcesCount = isset($this->resources[$resourceName]) ? \count($this->resources[$resourceName]) : 0;
             foreach ($resourceYaml as $key => $resourceYamlDatum) {
                 if (null === $resourceYamlDatum) {
                     $resourceYamlDatum = [];
@@ -83,7 +83,7 @@ final class YamlResourceExtractor extends AbstractResourceExtractor
 
                 try {
                     $base = $this->buildExtendedBase($resourceYamlDatum);
-                    $this->resources[$resourceName][$resourcesCount+$key] = array_merge($base, [
+                    $this->resources[$resourceName][$resourcesCount + $key] = array_merge($base, [
                         'operations' => $this->buildOperations($resourceYamlDatum, $base),
                         'graphQlOperations' => $this->buildGraphQlOperations($resourceYamlDatum, $base),
                     ]);
